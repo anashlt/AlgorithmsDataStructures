@@ -1,3 +1,3 @@
 End assignment 
 Algorithms and Data Structures
-Anass Houlout - Alpay Vodenicharov
+Anass Houlout, Alpay Vodenicharov, Pascal

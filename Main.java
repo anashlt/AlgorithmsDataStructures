@@ -24,50 +24,21 @@ public class Main {
 		
 		parseData(items);
 		
+			
 		
-		for(Item i: items) {
-			System.out.println(i.getCAD_MSRP());
-		}		
+		BubbleSort b = new BubbleSort();
+		b.bubbleSort(items);
 		
-		//bubbleSortItemNumber(items);
+		for (Item t: items) {
+			System.out.println(t.getItemNumber());
+		}
 		//insertionSort(items);
 		//smartBubbleSort(items);
 		
 	}
 	
 	
-	//bubble sort
-//	public <T extends Comparable<T>> void bubbleSortItemNumber(Collection<T>items) {
-//		
-//		for (int i = 0; i < items.size()-1; i++) {
-//			
-//			for (int t = 0; t < items.size() - i - 1; t++) {
-//				
-//				try {
-//					
-//					if (Integer.parseInt(items.get(t+1).getItemNumber()) < Integer.parseInt(items.get(t).getItemNumber())) {
-//						T tempItem = items.get(t);
-//						items.set(t, items.get(t + 1));
-//						items.set(t + 1, tempItem);
-//					}
-//					
-//				} catch (NumberFormatException e) {
-//					if (items.get(t+1).getItemNumber().compareTo(items.get(t).getItemNumber()) < 0) {
-//						T tempItem = items.get(t);
-//						items.set(t, items.get(t + 1));
-//						items.set(t + 1, tempItem);
-//					}
-//				}
-//				
-//			}
-//			
-//		}
-//		
-//		for (Item t: items) {
-//			System.out.println(t.getItemNumber());
-//		}
-//		
-//	}
+	
 	
 	public void smartBubbleSort(ArrayList<Item>items) {
 		
@@ -177,26 +148,63 @@ public class Main {
 		Iterable<CSVRecord> records = CSVFormat.EXCEL.withFirstRecordAsHeader().parse(in);
 		
 		for (CSVRecord r : records) {
+			String item_number = r.get("Item_Number");
+			String name = r.get("Name");
+			int year = Integer.parseInt(r.get("Year"));
+			String theme = r.get("Theme");
+			String subtheme = r.get("Subtheme");
+			int pieces = -1;
 			
-			T item_number = (T)r.get("Item_Number");
-			T name = (T)r.get("Name");
-			T year = (T)r.get("Year");
-			T theme = (T)r.get("Theme");
-			T subtheme = (T)r.get("Subtheme");
+			if (r.get("Pieces").equals("NA")) {
+				pieces = 0;
+			} else {
+				pieces = Integer.parseInt(r.get("Pieces"));
+			}
 			
-			T pieces = (T)r.get("Pieces");
-			T minifigures = (T)r.get("Minifigures");
+			int minifigures = -1;
 			
+			if (r.get("Minifigures").equals("NA")) {
+				minifigures = 0;
+			} else {
+				minifigures = Integer.parseInt(r.get("Minifigures"));
+			}
 			
-			T image_URL = (T)r.get("Image_URL");
-			T GBP_MSRP = (T)r.get("GBP_MSRP");
-			T USD_MSRP = (T)r.get("USD_MSRP");
-			T CAD_MSRP = (T)r.get("CAD_MSRP");
-			T EUR_MSRP = (T)r.get("EUR_MSRP");
+			String image_URL = r.get("Image_URL");
 			
-			T packaging = (T) r.get("Packaging");
-			T availability = (T)r.get("Availability");
+			double GBP_MSRP = -1;
 			
+			if (r.get("GBP_MSRP").equals("NA")) {
+				GBP_MSRP = 0.0;
+			} else {
+				GBP_MSRP = Double.parseDouble(r.get("GBP_MSRP"));
+			}
+			
+			double USD_MSRP = -1;
+			
+			if (r.get("USD_MSRP").equals("NA")) {
+				USD_MSRP = 0.0;
+			} else {
+				USD_MSRP = Double.parseDouble(r.get("USD_MSRP"));
+			}
+			
+			double CAD_MSRP = -1;
+			
+			if (r.get("CAD_MSRP").equals("NA")) {
+				CAD_MSRP = 0.0;
+			} else {
+				CAD_MSRP = Double.parseDouble(r.get("CAD_MSRP"));
+			}
+			
+			double EUR_MSRP = -1;
+			
+			if (r.get("EUR_MSRP").equals("NA")) {
+				EUR_MSRP = 0.0;
+			} else {
+				EUR_MSRP = Double.parseDouble(r.get("EUR_MSRP"));
+			}
+			
+			String packaging = r.get("Packaging");
+			String availability = r.get("Availability");
 			
 			
 			items.add(new Item(item_number , name , year , theme , subtheme , pieces , minifigures , image_URL , GBP_MSRP , USD_MSRP , CAD_MSRP,

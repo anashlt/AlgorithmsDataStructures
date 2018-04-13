@@ -1,5 +1,8 @@
+
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class InsertionSort <T extends Comparable<T>>  {
 	
@@ -9,25 +12,23 @@ public class InsertionSort <T extends Comparable<T>>  {
 	 */
 	public <T extends Comparable<T>> void insertionSort(Collection<T> items ) {
 		
-		//check if collection is list
-		if ( items instanceof List) {
-			
-			//perform traditional insertionsort
-			for(int i = 1; i < items.size(); i++)  {
-			    T key = ((List<T>) items).get(i);
-			    int j = i - 1;
-			    
-			    //cast items to list of T
-			    while (j >= 0 && key.compareTo(((List<T>) items).get(j)) < 0) {
-			        ((List<T>) items).set(j + 1, ((List<T>) items).get(j));
-			        j--;
-			    }
-			    ((List<T>) items).set(j + 1, key);
-			}
-			
-			
+		List<T> tempList = new LinkedList<T>();
+		tempList.addAll(items);
+		
+		for(int i = 1; i < tempList.size(); i++)  {
+		    T key = tempList.get(i);
+		    int j = i - 1;
+		    
+		    //cast items to list of T
+		    while (j >= 0 && key.compareTo( tempList.get(j)) < 0) {
+		         tempList.set(j + 1, tempList.get(j));
+		        j--;
+		    }
+		     tempList.set(j + 1, key);
 		}
 		
+		items.clear();
+		items.addAll(tempList);
 		
 	}
 }

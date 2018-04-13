@@ -1,5 +1,7 @@
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 public class QuickSort <T extends Comparable<T>> {
@@ -12,45 +14,46 @@ public class QuickSort <T extends Comparable<T>> {
 	 */
 	public <T extends Comparable<T>> void quickSort(Collection<T> items , int start, int end ) {
 		
-		//check if collection is of type list
-		if ( items instanceof List) {
-			int i = start;
+		
+		int i = start;
 
-	        int j = end;
+        int j = end;
 
+        List<T> tempList = new LinkedList<T>();
+		tempList.addAll(items);
+        if (j - i >= 1) {
+        	
+        	//select pivot and cast items to list of T
+            T pivot = tempList.get(i);
 
-	        if (j - i >= 1) {
-	        	
-	        	//select pivot and cast items to list of T
-	            T pivot = ((List<T>) items).get(i);
+            while (j > i)
+            {
 
-	            while (j > i)
-	            {
+                while (tempList.get(i).compareTo(pivot) <= 0 && i < end && j > i){
+                    i++;
+                }
 
-	                while (((List<T>) items).get(i).compareTo(pivot) <= 0 && i < end && j > i){
-	                    i++;
-	                }
+                while (tempList.get(j).compareTo(pivot) >= 0 && j > start && j >= i){
+                    j--;
+                }
 
-	                while (((List<T>) items).get(j).compareTo(pivot) >= 0 && j > start && j >= i){
-	                    j--;
-	                }
+                if (j > i) {
+                    swap(tempList, i, j);
+                }
+            }
 
-	                if (j > i) {
-	                    swap(items, i, j);
-	                }
-	            }
-
-	            swap(items, start, j);
-	            
-	            //perform recursion to continue sorting collection
-	            quickSort(items, start, j - 1);
-
-	            quickSort(items, j + 1, end);
-			
-	        }
-			
-			
-		}
+            swap(tempList, start, j);
+          
+            //perform recursion to continue sorting collection
+            quickSort(tempList, start, j - 1);
+            
+            quickSort(tempList, j + 1, end);
+		
+        }
+       	items.clear();
+    	items.addAll(tempList);
+        
+        
 		
 		
 	}
@@ -61,11 +64,15 @@ public class QuickSort <T extends Comparable<T>> {
 	 * @param j - the index of the element that will be swapped
 	 */
 	public <T> void swap(Collection<T> items , int i , int j) {
-		if (items instanceof List) {
-			T temp = ((List<T>) items).get(i);
-			((List<T>) items).set(i, ((List<T>) items).get(j));
-			((List<T>) items).set(j, temp);
-		}
+		List<T> tempList = new LinkedList<T>();
+		tempList.addAll(items);
+		T temp = tempList.get(i);
+		tempList.set(i, tempList.get(j));
+		tempList.set(j, temp);
+		
+		items.clear();
+		items.addAll(tempList);
+		
 	}
 	
 }

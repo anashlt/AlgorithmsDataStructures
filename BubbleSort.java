@@ -1,6 +1,8 @@
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -16,24 +18,25 @@ public class BubbleSort <T extends Comparable<T>>  {
 	 */
 	public <T extends Comparable<T>> void bubbleSort(Collection<T> items ) {
 		
-		//check if collection is list
-		if ( items instanceof List) {
-			//perform traditional bubble sort
-			for (int i = 0; i < items.size()-1; i++) {
-				for (int t = 0; t < items.size() - i - 1; t++) {
-					
-					//cast items to List of T
-					if (((List<T>) items).get(t+1).compareTo(((List<T>) items).get(t)) < 0) {
-						T tempItem = ((List<T>) items).get(t);
-						((List<T>) items).set(t, ((List<T>) items).get(t + 1));
-						((List<T>) items).set(t + 1, tempItem);
-					}
-					
-					
+		List<T> tempList = new LinkedList<T>();
+		tempList.addAll(items);
+		
+		for (int i = 0; i < tempList.size()-1; i++) {
+			for (int t = 0; t < tempList.size() - i - 1; t++) {
+				
+				if ( tempList.get(t+1).compareTo( tempList.get(t)) < 0) {
+					T tempItem =  tempList.get(t);
+					tempList.set(t,  tempList.get(t + 1));
+					tempList.set(t + 1, tempItem);
 				}
 				
+				
 			}
+			
 		}
+		
+		items.clear();
+		items.addAll(tempList);
 		
 		
 	}

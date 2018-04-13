@@ -1,3 +1,4 @@
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,8 +9,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
+import java.util.Stack;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -31,6 +34,10 @@ public class Main {
 		
 		Set<Item> set = new HashSet<Item>();
 		
+		Queue<String> queue = new PriorityQueue<String>();
+		
+		Stack<String> stack = new Stack<>();
+		
 		//fill datasets
 		list.add("D");
 		list.add("G");
@@ -39,24 +46,32 @@ public class Main {
 		list.add("B");
 		list.add("H");
 		
-		set.add(items.get(1));
-		set.add(items.get(8));
-		set.add(items.get(3));
+		set.add(items.get(1)); 
+		set.add(items.get(8)); 
+		set.add(items.get(3)); 
 		set.add(items.get(12));
 		set.add(items.get(2));
 		//set.add("4");
 		
+		queue.add("C");
+		queue.add("A");
+		queue.add("T");
+		
+		stack.push("Q");
+		stack.push("C");
+		stack.push("A");
+		
 		//bubble sort
 		BubbleSort b = new BubbleSort();
-		b.bubbleSort(list);
+		//b.bubbleSort(stack);
 		
 		//insertion sort
 		InsertionSort is = new InsertionSort();
-		is.insertionSort(list);
+		//is.insertionSort(list);
 		
 		//smart bubble sort
 		SmartBubbleSort sbs = new SmartBubbleSort();
-		sbs.smartBubbleSort(list);
+		//sbs.smartBubbleSort(list);
 		
 		//quick sort
 		QuickSort qs = new QuickSort();

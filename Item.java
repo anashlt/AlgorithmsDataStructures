@@ -163,10 +163,15 @@ public class Item <T extends Comparable<T>> implements Comparable<Item>{
 		this.availability = availability;
 		
 	}
-
+	
 	@Override
+	/**
+	 * @param Item o - the item that will be compared
+	 */
 	public int compareTo(Item o) {
 		try {
+			//parse item number to int in case it doesnt have letters such as A,B,C
+			//for more accurate sorting later
 			if (Integer.parseInt(this.itemNumber) < Integer.parseInt(o.itemNumber)) {
 				return -1;
 			} else if (Integer.parseInt(this.itemNumber) == Integer.parseInt(o.itemNumber)) {
@@ -174,7 +179,8 @@ public class Item <T extends Comparable<T>> implements Comparable<Item>{
 			} else {
 				return 1;
 			}
-			
+			//if parsing fails, that means itemnumber contains
+			//a letter and will throw an exception. Compare it as string
 		} catch (NumberFormatException e) {
 			if (this.itemNumber.compareTo(o.itemNumber) < 0) {
 				return -1;

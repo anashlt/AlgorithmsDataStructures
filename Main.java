@@ -4,8 +4,12 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Set;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -16,119 +20,56 @@ public class Main {
 		
 		
 		
-		
-
-		
-		
 		List<Item> items = new LinkedList<Item>();
+		List<Item> emptyItems = new LinkedList<Item>();
 		
+		//parse the data from legosets into a list of items
 		parseData(items);
 		
-			
+		//create datasets to test output
+		List<String> list = new LinkedList<String>();
 		
+		Set<Item> set = new HashSet<Item>();
+		
+		//fill datasets
+		list.add("D");
+		list.add("G");
+		list.add("A");
+		list.add("C");
+		list.add("B");
+		list.add("H");
+		
+		set.add(items.get(1));
+		set.add(items.get(8));
+		set.add(items.get(3));
+		set.add(items.get(12));
+		set.add(items.get(2));
+		//set.add("4");
+		
+		//bubble sort
 		BubbleSort b = new BubbleSort();
-		b.bubbleSort(items);
+		b.bubbleSort(list);
 		
-		for (Item t: items) {
-			System.out.println(t.getItemNumber());
-		}
-		//insertionSort(items);
-		//smartBubbleSort(items);
+		//insertion sort
+		InsertionSort is = new InsertionSort();
+		is.insertionSort(list);
 		
-	}
-	
-	
-	
-	
-	public void smartBubbleSort(ArrayList<Item>items) {
+		//smart bubble sort
+		SmartBubbleSort sbs = new SmartBubbleSort();
+		sbs.smartBubbleSort(list);
 		
-		boolean sorted = false;
-		while (!sorted) {
-			sorted = true;
-			for (int i = 0; i < items.size()-1; i++) {
-				
-				for (int t = 0; t < items.size() - i - 1; t++) {
-					
-					if (items.get(t+1).getItemNumber().compareTo(items.get(t).getItemNumber()) < 0) {
-						Item tempItem = items.get(t);
-						items.set(t, items.get(t + 1));
-						items.set(t + 1, tempItem);
-						sorted = false;
-					}
-					
-				}
-				
-			}
-		}
+		//quick sort
+		QuickSort qs = new QuickSort();
+		qs.quickSort(list, 0, list.size()-1);
 		
-		for (Item t: items) {
-			System.out.println(t.getItemNumber());
+		
+		//output list
+		for (String s : list) {
+			System.out.println(s);
 		}
 		
 	}
 	
-	public void quickSort(ArrayList<Item>items, int start, int end) {
-		
-
-        int i = start;
-
-        int j = end;
-
-
-        if (j - i >= 1) {
-
-            Item pivot = items.get(i);
-
-            while (j > i)
-            {
-
-                while (items.get(i).getItemNumber().compareTo(pivot.getItemNumber()) <= 0 && i < end && j > i){
-                    i++;
-                }
-
-                while (items.get(j).getItemNumber().compareTo(pivot.getItemNumber()) >= 0 && j > start && j >= i){
-                    j--;
-                }
-
-                if (j > i) {
-                    swap(items, i, j);
-                }
-            }
-
-            swap(items, start, j);
-
-            quickSort(items, start, j - 1);
-
-            quickSort(items, j + 1, end);
-		
-        }
-	}
-	
-	public void swap(ArrayList<Item> items , int i , int j) {
-		Item temp = items.get(i);
-		items.set(i, items.get(j));
-		items.set(j, temp);
-	}
-        
-	
-	public void insertionSort(ArrayList<Item> items) {
-		
-		for(int i = 1; i < items.size(); i++)  {
-		    Item key = items.get(i);
-		    int j = i - 1;
-
-		    while (j >= 0 && key.getItemNumber().compareTo(items.get(j).getItemNumber()) < 0) {
-		        items.set(j + 1, items.get(j));
-		        j--;
-		    }
-		    items.set(j + 1, key);
-		}
-		
-		for (Item t: items) {
-			System.out.println(t.getItemNumber());
-		}
-		
-	}
 	
 	
 	public static void main(String[] args) {
@@ -141,6 +82,12 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * Using the CSV referenced library, parse the data from
+	 * legosets into a list of objects
+	 * @param items - the list that will be filled with lego data
+	 * @throws IOException
+	 */
 	public <T extends Comparable<T>> void parseData(List<Item> items) throws IOException {
 		
 		Reader in = new FileReader("C://users/alpay/desktop/legosets.csv");

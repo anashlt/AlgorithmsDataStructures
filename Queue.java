@@ -9,25 +9,34 @@ public class Queue<T> extends AbstractQueue{
 	private int size;
 	private int maxSize;
 	private Comparator<? super T> comp;
-	Object[] stack;
+	Object[] queue;
 	
 	public Queue () {
 		maxSize = 10;
-		stack = new Object[10];
+		queue = new Object[10];
 		size = 0;
 	}
 	
+	/**
+	 * 
+	 * @param maxSize - max size of queue
+	 */
 	public Queue (int maxSize) {
 		this.maxSize = maxSize;
-		stack = new Object[maxSize];
+		queue = new Object[maxSize];
 	}
 	
+	@Override
+	/**
+	 * @param object that will be enqueued
+	 * @return if object was added or not
+	 */
 	public boolean add(Object t) {
 		if (!offer(t)) {
 			return false;
 		}
 		
-		stack[size] = t;
+		queue[size] = t;
 		size++;
 		return true;
 		
@@ -36,6 +45,9 @@ public class Queue<T> extends AbstractQueue{
 	}
 	
 	@Override
+	/**
+	 * @return if max size of queue is reached or not
+	 */
 	public boolean offer(Object e) {
 		if (this.size == this.maxSize) {
 			return false;
@@ -44,15 +56,26 @@ public class Queue<T> extends AbstractQueue{
 	}
 
 	@Override
+	/**
+	 * @return the next item to queue and remove it from queue
+	 */
 	public Object poll() {
-		// TODO Auto-generated method stub
-		return null;
+		Object o = queue[0];
+		queue[0] = null;
+		//move all other elements back
+		for (int i = 0; i < size; i++) {
+			queue[i] = queue[i+1];
+		}
+		size--;
+		return o;
 	}
 
 	@Override
+	/**
+	 * @return the next item to dequeue
+	 */
 	public Object peek() {
-		// TODO Auto-generated method stub
-		return null;
+		return queue[0];
 	}
 
 	@Override
@@ -60,11 +83,13 @@ public class Queue<T> extends AbstractQueue{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	@Override
+	/**
+	 * @return size of queue
+	 */
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 }

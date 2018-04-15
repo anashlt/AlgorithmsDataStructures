@@ -1,4 +1,3 @@
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -79,10 +78,37 @@ public class Main {
 		
 		
 		//output list
-		for (String s : list) {
-			System.out.println(s);
+		int[] arr = new int[]{1,5,9,12};
+		System.out.println(binsearch(arr,1));
+		
+	}
+	
+	public int binsearch(int []arr , int x) {
+		
+		int l = 0;
+		int r = arr.length-1;
+		
+		while (l <= r) {
+			
+			int m = (l+r)/2;
+			System.out.println(l);
+			System.out.println(r);
+			System.out.println(m);
+			if (arr[m] == x) {
+				return arr[m];
+			}
+			
+			if (arr[m] < x) {
+				l = m+1;
+			}
+			
+			if (arr[m] > x) {
+				r = m-1;
+			}
+			
 		}
 		
+		return -1;
 	}
 	
 	

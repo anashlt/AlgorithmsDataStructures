@@ -1,5 +1,5 @@
 
-public class Item <T extends Comparable<T>> implements Comparable<Item>{
+public class Item  implements Comparable<Item>{
 	
 	
 	String itemNumber;

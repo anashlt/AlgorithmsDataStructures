@@ -26,6 +26,15 @@ public class Stack<E> {
 		return stack.remove(--top);
 	}
 	
+	// method to look at top of stack without removing element
+	public E peek()  {
+        if(isEmpty())
+            throw new EmptyStackException();
+        else
+            return stack.get(top-1);
+    }
+
+	
 
 }
 

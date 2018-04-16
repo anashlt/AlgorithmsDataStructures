@@ -23,6 +23,10 @@ public class SmartBubbleSortTest {
 	
 	
 	@Before
+	/**
+	 * set the test data up
+	 * @throws Exception
+	 */
 	public void setUp() throws Exception {
 		
 		strings.add("C");
@@ -49,10 +53,8 @@ public class SmartBubbleSortTest {
 		stackInt.push(3);
 		stackInt.push(1);
 		
-		items.add(new Item("123","yes",1996,"Theme","Subtheme",14,28,"url",23.3,23.3,23.3,23.3,"packaging", "availability"));
-		items.add(new Item("121","yes",1996,"Theme","Subtheme",14,28,"url",23.3,23.3,23.3,23.3,"packaging", "availability"));
-		items.add(new Item("127","yes",1996,"Theme","Subtheme",14,28,"url",23.3,23.3,23.3,23.3,"packaging", "availability"));
-		items.add(new Item("12SD","yes",1996,"Theme","Subtheme",14,28,"url",23.3,23.3,23.3,23.3,"packaging", "availability"));
+		//parse data from legosets to items collection
+		Main.parseData(items);
 		
 	}
 
@@ -86,9 +88,12 @@ public class SmartBubbleSortTest {
 		//sort items, the compareto method of
 		//items allows us to sort by item number
 		sbs.smartBubbleSort(items);
-		assertEquals(items.get(0).getItemNumber() , "121");
-		assertEquals(items.get(1).getItemNumber() , "123");
-		assertEquals(items.get(3).getItemNumber() , "12SD");
+		assertEquals(items.get(0).getItemNumber() , "5");
+		assertEquals(items.get(1).getItemNumber() , "7");
+		assertEquals(items.get(3).getItemNumber() , "8");
+		for (Item item: items) {
+			System.out.println(item.getItemNumber());
+		}
 		
 	}
 	

@@ -16,7 +16,7 @@ public class LinkedList<T> {
 		else first = null;
 	}
 	
-	/// Go over list and print the node value
+	// Go over list and print the node value
 	private void printList(LinkedListNode<T> node) {
 		System.out.println("Node is " + node.getValue());
 		if(node.getNext()!=null) printList(node.getNext());
@@ -24,18 +24,6 @@ public class LinkedList<T> {
 
 	public void print(){
 		printList(first);
-	}
-	
-	// Let's try this
-	public static void main(String[] args) {
-		LinkedList<String> list = new LinkedList<String>();
-		list.insert(new LinkedListNode<String>("Joe"));
-		list.insert(new LinkedListNode<String>("John"));
-		list.insert(new LinkedListNode<String>("Alex"));
-		list.print();
-		list.remove();
-		System.out.println("Result");
-		list.print();
 	}
 
 }

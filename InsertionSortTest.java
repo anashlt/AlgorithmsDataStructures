@@ -17,6 +17,7 @@ public class InsertionSortTest {
 	Queue<Integer> queueInt = new PriorityQueue<Integer>();
 	Stack<String> stackStr = new Stack<String>();
 	Stack<Integer> stackInt = new Stack<Integer>();
+	List<Item> items = new LinkedList<Item>();
 	
 	InsertionSort is = new InsertionSort();
 	
@@ -48,6 +49,10 @@ public class InsertionSortTest {
 		stackInt.push(3);
 		stackInt.push(1);
 		
+		items.add(new Item("123","yes",1996,"Theme","Subtheme",14,28,"url",23.3,23.3,23.3,23.3,"packaging", "availability"));
+		items.add(new Item("121","yes",1996,"Theme","Subtheme",14,28,"url",23.3,23.3,23.3,23.3,"packaging", "availability"));
+		items.add(new Item("127","yes",1996,"Theme","Subtheme",14,28,"url",23.3,23.3,23.3,23.3,"packaging", "availability"));
+		items.add(new Item("12SD","yes",1996,"Theme","Subtheme",14,28,"url",23.3,23.3,23.3,23.3,"packaging", "availability"));
 		
 	}
 
@@ -75,6 +80,13 @@ public class InsertionSortTest {
 				
 		assertTrue(stackStr.pop().compareTo(stackStr.peek()) > 0);
 		assertTrue(stackStr.pop().compareTo(stackStr.peek()) < 0);
+		
+		//sort items, the compareto method of
+		//items allows us to sort by item number
+		is.insertionSort(items);
+		assertEquals(items.get(0).getItemNumber() , "121");
+		assertEquals(items.get(1).getItemNumber() , "123");
+		assertEquals(items.get(3).getItemNumber() , "12SD");
 		
 	}
 	

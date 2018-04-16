@@ -8,6 +8,10 @@ public class LinkedList<T> {
 		first = node;
 	}
 
+	// check if Linkedlist is empty
+	public boolean isEmpty() {
+	    return (first == null);
+	}
 
 	// Remove from start of list
 	public void remove(){
@@ -24,6 +28,11 @@ public class LinkedList<T> {
 
 	public void print(){
 		printList(first);
+	}
+	
+	// Get first element
+	public String getFirst() {
+		return (String) first.getValue();
 	}
 
 }

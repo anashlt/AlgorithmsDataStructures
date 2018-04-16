@@ -43,6 +43,14 @@
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target name="BinarySearchTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="BinarySearchTest" todir="${junit.output.dir}"/>
+            <classpath refid="AlgorithmsExec.classpath"/>
+        </junit>
+    </target>
     <target name="BubbleSortTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
@@ -64,19 +72,19 @@
             <classpath refid="AlgorithmsExec.classpath"/>
         </java>
     </target>
+    <target name="QueueTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="QueueTest" todir="${junit.output.dir}"/>
+            <classpath refid="AlgorithmsExec.classpath"/>
+        </junit>
+    </target>
     <target name="QuickSortTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="QuickSortTest" todir="${junit.output.dir}"/>
-            <classpath refid="AlgorithmsExec.classpath"/>
-        </junit>
-    </target>
-    <target name="SmartBubbleSortTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="SmartBubbleSortTest" todir="${junit.output.dir}"/>
             <classpath refid="AlgorithmsExec.classpath"/>
         </junit>
     </target>
@@ -88,19 +96,27 @@
             <classpath refid="AlgorithmsExec.classpath"/>
         </junit>
     </target>
-    <target name="QueueTest">
+    <target name="SmartBubbleSortTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="QueueTest" todir="${junit.output.dir}"/>
+            <test name="SmartBubbleSortTest" todir="${junit.output.dir}"/>
             <classpath refid="AlgorithmsExec.classpath"/>
         </junit>
     </target>
-    <target name="BinarySearchTest">
+    <target name="LinkedListTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="BinarySearchTest" todir="${junit.output.dir}"/>
+            <test name="LinkedListTest" todir="${junit.output.dir}"/>
+            <classpath refid="AlgorithmsExec.classpath"/>
+        </junit>
+    </target>
+    <target name="StackTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="StackTest" todir="${junit.output.dir}"/>
             <classpath refid="AlgorithmsExec.classpath"/>
         </junit>
     </target>

@@ -31,6 +31,10 @@ public class Main {
 		//create datasets to test output
 		List<String> list = new LinkedList<String>();
 		
+		List<String> list2 = new LinkedList<String>();
+		
+		List<String> list3 = new LinkedList<String>();
+		
 		Set<Item> set = new HashSet<Item>();
 		
 		Queue<String> queue = new PriorityQueue<String>();
@@ -44,6 +48,16 @@ public class Main {
 		list.add("C");
 		list.add("B");
 		list.add("H");
+		
+		list2.add("S");
+		list2.add("C");
+		list2.add("O");
+		list2.add("G");
+		
+		list3.add("T");
+		list3.add("E");
+		list3.add("H");
+		list3.add("Z");
 		
 		set.add(items.get(1)); 
 		set.add(items.get(8)); 
@@ -62,55 +76,35 @@ public class Main {
 		
 		//bubble sort
 		BubbleSort b = new BubbleSort();
-		//b.bubbleSort(stack);
+		System.out.println("Bubble sorting stack...");
+		b.bubbleSort(stack);
+		System.out.println("Sorted stack:");
+		for (String s: stack) {
+			System.out.println(s);
+		}
 		
 		//insertion sort
 		InsertionSort is = new InsertionSort();
-		//is.insertionSort(list);
+		System.out.println("insertion sorting list...");
+		is.insertionSort(list);
+		System.out.println("Sorted list:");
+		for (String s: list) {
+			System.out.println(s);
+		}
 		
 		//smart bubble sort
 		SmartBubbleSort sbs = new SmartBubbleSort();
-		//sbs.smartBubbleSort(list);
+		System.out.println("smart bubble sorting list...");
+		sbs.smartBubbleSort(list2);
+		for (String s: list2) {
+			System.out.println(s);
+		}
 		
 		//quick sort
 		QuickSort qs = new QuickSort();
 		qs.quickSort(list, 0, list.size()-1);
 		
-		
-		//output list
-		int[] arr = new int[]{1,5,9,12};
-		System.out.println(binsearch(arr,1));
-		
 	}
-	
-	public int binsearch(int []arr , int x) {
-		
-		int l = 0;
-		int r = arr.length-1;
-		
-		while (l <= r) {
-			
-			int m = (l+r)/2;
-			System.out.println(l);
-			System.out.println(r);
-			System.out.println(m);
-			if (arr[m] == x) {
-				return arr[m];
-			}
-			
-			if (arr[m] < x) {
-				l = m+1;
-			}
-			
-			if (arr[m] > x) {
-				r = m-1;
-			}
-			
-		}
-		
-		return -1;
-	}
-	
 	
 	
 	public static void main(String[] args) {
@@ -129,12 +123,15 @@ public class Main {
 	 * @param items - the list that will be filled with lego data
 	 * @throws IOException
 	 */
-	public <T extends Comparable<T>> void parseData(List<Item> items) throws IOException {
+	public static <T extends Comparable<T>> void parseData(List<Item> items) throws IOException {
 		
-		Reader in = new FileReader("C://users/alpay/desktop/legosets.csv");
+		//read the dataset from legosets directory
+		Reader in = new FileReader(System.getProperty("user.dir") + "/src/lego.csv");
 		
+		//parse the data
 		Iterable<CSVRecord> records = CSVFormat.EXCEL.withFirstRecordAsHeader().parse(in);
 		
+		//put data into the items list
 		for (CSVRecord r : records) {
 			String item_number = r.get("Item_Number");
 			String name = r.get("Name");

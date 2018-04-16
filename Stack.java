@@ -19,11 +19,4 @@ public class Stack<E> {
 		return stack.remove(--top);
 	}
 
-	// lets give it a try
-	public static void main(String[] args) {
-		Stack<Integer> s = new Stack<Integer>();
-		s.push(1);
-		System.out.println(s.pop());
-	}
-
 }

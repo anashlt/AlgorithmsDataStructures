@@ -8,9 +8,13 @@ public class Queue<T> extends AbstractQueue{
 	
 	private int size;
 	private int maxSize;
-	private Comparator<? super T> comp;
 	Object[] queue;
 	
+	/**
+	 * initialize the array that will be used to store queue items
+	 * set default max size to 10
+	 * current size when initialized is 0
+	 */
 	public Queue () {
 		maxSize = 10;
 		queue = new Object[10];
